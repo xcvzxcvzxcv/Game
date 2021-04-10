@@ -1,0 +1,3081 @@
+Let's make a game!
+	name:Zanzarah Clicker alpha0.0.1
+	by:Lymph
+	desc:Небольшая игра, позволяющая снова окунуться в мир Занзары.
+	created:7/5/19
+	version:0.1
+
+Settings
+    number display full
+    no bulk particles
+	spritesheet:iconstop, 48 by 48, https://imgur.com/EOpsJVD.png
+	spritesheet:icons, 48 by 48, https://imgur.com/u2CEbRk.png
+	spritesheet:icons2, 60 by 60, https://imgur.com/dJdpUxD.png
+	spritesheet:elements, 48 by 48, https://imgur.com/YC0KapQ.png
+	spritesheet:buildings, 48 by 48, https://imgur.com/mwd1SzB.png
+	spritesheet:pixie, 64 by 64, https://i.imgur.com/qxIFbsG.png
+
+CSS
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background:none;
+}
+::-webkit-scrollbar-thumb {
+  background:#09525f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background:#1c9bad;
+}
+#game
+{
+	font-size:18px;
+	font-family:Garamond;
+	text-shadow:1px;
+	text-align:justify;
+	background-size:100%;
+}
+#main-box
+{
+width:100%;
+height:100%;
+}
+#box-menues
+{
+position:absolute;
+top:0%;
+left:0%;
+bottom:0%;
+right:0%;
+padding:0px;
+margin:0px;
+background: url(https://imgur.com/u44KzKu.png) no-repeat;
+background-size:contain;
+z-index:-10;
+}
+.pixiefon
+{
+top:75.2%;
+left:50.5%;
+width:50px;
+height:50px;
+background: url(https://imgur.com/qxIFbsG.png) no-repeat;
+z-index:100;
+position:absolute;
+padding:0px;
+margin:0px;
+}
+.creaturefon
+{
+top:5%;
+left:1%;
+width:90px;
+height:90px;
+background:url(https://media.giphy.com/media/Plgkt1DnS2GjjQQdz5/giphy.gif) no-repeat;
+background-size:contain;
+z-index:100;
+position:absolute;
+padding:0px;
+margin:0px;
+}
+.creaturefon:hover
+{
+background:url(https://media.giphy.com/media/Plgkt1DnS2GjjQQdz5/giphy.gif) no-repeat;
+background-size:contain;
+width:100px;
+height:100px;
+}
+.endevabg1
+{
+height:2000px;
+top:0%;
+left:0%;
+bottom:0%;
+right:0%;
+padding:0px;
+margin:0px;
+background:url(https://imgur.com/MoU6ZC4.png) no-repeat;
+background-size:contain;
+position:absolute;
+}
+.endevabg2
+{
+height:2000px;
+top:0%;
+left:0%;
+bottom:0%;
+right:0%;
+padding:0px;
+margin:0px;
+background:url(https://imgur.com/VZoYYta.png.png) no-repeat;
+background-size:contain;
+position:absolute;
+}
+.cottagebg1
+{
+height:2000px;
+top:0%;
+left:0%;
+bottom:0%;
+right:0%;
+padding:0px;
+margin:0px;
+background:url(https://imgur.com/qJhvXz5.png) no-repeat;
+background-size:contain;
+position:absolute;
+}
+.cottagebg2
+{
+height:2000px;
+top:0%;
+left:0%;
+bottom:0%;
+right:0%;
+padding:0px;
+margin:0px;
+background:url(https://imgur.com/7Cd7RaE.png) no-repeat;
+background-size:contain;
+position:absolute;
+}
+#box-buttons
+{
+	top:0px;
+	right:0px;
+	bottom:0px;
+	left:0px;
+}
+.button.pixiefon:hover
+{
+	background:url(https://imgur.com/qxIFbsG.png) no-repeat;
+}
+.upgrade.fairyfon:hover
+{
+	font-size:18px;
+	background:url(https://imgur.com/mkdE9WH.png) no-repeat;
+}
+.building.buildingfon:hover
+{
+	font-size:18px;
+	background:url(https://imgur.com/mkdE9WH.png) no-repeat;
+}
+.button.buildingfon:hover
+{
+	font-size:18px;
+	background:url(https://imgur.com/mkdE9WH.png) no-repeat;
+}
+.thing-icon
+{
+height:48px;
+width:48px;
+}
+.thing-icon.pixiesreward-icon
+{
+    width:60px;
+    height:60px;
+}
+.box
+{
+	padding:0px;
+	box-shadow:none;
+}
+.thing,.box-header,.box-footer,.box-bit
+{
+	opacity:100%;
+	margin:0px;
+	border:none;
+}
+.upgrade.owned, .building.owned
+{
+	box-shadow:none;
+}
+  #game.filtersOn .upgrade.fairyfon.notOwned
+  {
+   background:url(https://imgur.com/0qjJpuC.png) no-repeat; 
+   opacity:0.9;
+   blur:2;
+ }
+  #game.filtersOn .building.buildingfon.notOwned
+  {
+   background:url(https://imgur.com/0qjJpuC.png) no-repeat; 
+   opacity:0.9;
+   blur:2;
+ }
+  #game.filtersOn .thing.cantAfford.notOwned
+  {
+    filter:blur(0.5px);
+    opacity:1;
+  }
+.box-header
+{
+	margin-bottom:4px;
+    text-align:center;
+	font-size:25px;
+	width:256px;
+	background:transparent;
+	font-family:Garamond;
+}
+.box-footer
+{
+	margin-top:4px;
+}
+#box-main
+{
+	left:0px;
+	top:0px;
+    right:0px;
+	bottom:0px;
+	overflow:hidden;
+	width:100%;
+	z-index:100;
+}
+.fullWidth .thing-icon
+{
+	margin-top:-10px;
+	margin-bottom:-10px;
+}
+#box-res.fullWidth
+{
+	top:2%;
+	left:0%;
+	height:52px;
+	text-align:justify;
+    max-width:100%;
+	font-size:18px;
+}
+#box-artifacts
+{
+	min-width:400px;
+	max-width:400px;
+	min-height:200px;
+	max-height:200px;
+	height:100%;
+	weight:100%;
+	top:820px;
+	left:350px;
+	bottom:0px;
+	width:auto;
+	height:15%;
+	overflow-x:hidden;
+	overflow-y:hidden;
+	padding-bottom:48px;
+	position:absolute;
+	text-align:left;
+}
+#box-pixiesreward1
+{
+	top:837px;
+	left:1115px;
+	position:absolute;
+}
+.button>.thing-text 
+{
+text-decoration:none !important;
+}
+.button.techfon
+{
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:24px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/HUdNaDH.png) no-repeat;
+}
+.upgrade.techfon
+{
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:24px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/HUdNaDH.png) no-repeat;
+}
+.upgrade.buildingfon
+{
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:35px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/HUdNaDH.png) no-repeat;
+}
+.building.itemfon
+{
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:35px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/HUdNaDH.png) no-repeat;
+}
+.building.buildingfon
+{
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:24px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/HUdNaDH.png) no-repeat;
+}
+.button.buildingfon
+{
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:35px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/0qjJpuC.png) no-repeat;
+}
+.building.endeva
+{	
+	right:0%;
+	width:400px;
+	height:48px;
+	display:block;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/1BznYQW.png) no-repeat;
+}
+.upgrade.naturefon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/1BznYQW.png) no-repeat;
+}
+.upgrade.waterfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/xn7Yf95.png) no-repeat;
+}
+.upgrade.airfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/ll2dsbs.png) no-repeat;
+}
+.upgrade.rockfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/dCNIHrG.png) no-repeat;
+}
+.upgrade.lightfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/EqlXVPQ.png) no-repeat;
+}
+.upgrade.energyfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/ngYgGnY.png) no-repeat;
+}
+.upgrade.psifon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/RWwG9An.png) no-repeat;
+}
+#tooltip.fairypage
+{
+	background:url(https://imgur.com/Ou8WXLX.png) no-repeat;
+	background-size:contain;
+	font-size:20px;
+	width:25%;
+	height:61%;
+	border-radius:5px;
+}
+b 
+{
+  color:white !important;
+}
+.upgrade.icefon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/3GJFjTk.png) no-repeat;
+}
+.upgrade.chaosfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/F2uFO4L.png) no-repeat;
+}
+.building.chaosfon
+{	
+	left:0%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/F2uFO4L.png) no-repeat;
+}
+.upgrade.darkfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/iyucsNl.png) no-repeat;
+}
+.upgrade.firefon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/5WnFm2f.png) no-repeat;
+}
+.upgrade.metalfon
+{	
+	left:4%;
+	width:400px;
+	height:48px;
+	display:block;
+	margin-right:0px;
+	font-size:21px !important;
+    font-weight:bold;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/g5YN2aA.png) no-repeat;
+}
+.upgrade.fairyfon
+{	
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:35px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/HUdNaDH.png) no-repeat;
+}
+.building.shopfon
+{	
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:35px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/JuOYxg0.png) no-repeat;
+}
+.building.invfon
+{	
+	width:300px;
+	height:48px;
+	display:block;
+	margin-left:35px;
+	font-size:17px;
+    text-align:left;
+    color:white;
+	background:url(https://imgur.com/54lYHbX.png) no-repeat;
+}
+#box-buildings
+{
+width:297px;
+height:360px;
+position:absolute;
+top:14.5%;
+right:2.7%;
+bottom:0%;
+padding:0px;
+margin:0px;
+	text-align:left;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+.box-bit
+{
+    overflow-x:hidden !important;
+    overflow-y:hidden !important;
+	background:none !important;
+	font-family:Garamond !important;
+	font-size:17px !important;
+	text-align:right !important;
+	color:white;
+}
+.polosa
+{
+background:red;
+position:absolute;
+top:40%;
+bottom:0%;
+right:0%;
+width:935px;
+height:200px;
+padding:0px;
+margin:0px;
+overflow-y:hidden;
+overflow-x:hidden;
+z-index:100;
+}
+#box-textbox
+{
+position:absolute;
+top:24.6%;
+left:37.3%;
+bottom:0%;
+right:0%;
+width:435px;
+height:25px;
+padding:0px;
+margin:0px;
+overflow-y:hidden;
+overflow-x:hidden;
+}
+#box-fairies1
+{
+width:307px;
+height:360px;
+position:absolute;
+top:14.5%;
+left:2%;
+bottom:0%;
+right:0%;
+padding:0px;
+margin:0px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+#box-items1
+{
+width:307px;
+height:340px;
+position:absolute;
+top:59%;
+left:2%;
+bottom:0%;
+right:0%;
+padding:0px;
+margin:0px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+#box-technologytree
+{
+width:307px;
+height:340px;
+position:absolute;
+top:59%;
+right:2%;
+bottom:0%;
+padding:0px;
+margin:0px;
+overflow-y:auto;
+overflow-x:hidden;
+}
+#box-buildings>.box-header
+{
+	padding-bottom:8px;
+}
+#bulkDisplay
+{
+	margin:-20px 24px 6px 24px;
+	border:none;
+	background:transparent;
+}
+.thing
+{
+	display:inline-block;
+	padding:0px;
+	cursor:pointer;
+}
+.upgrade.cantAfford
+{
+	border:none;
+}
+.thing-costs
+{
+margin-right:-50%;
+font-size:18px;
+text-align:right;
+font-weight:bold;
+text-shadow:1px 1px 0px rgba(0,0,0,0.5);
+}
+.cost.hasEnough{color:#348c4b;}
+.cost.notEnough{color:#f00;
+}
+.fullWidth
+{
+	display:block;
+	margin-left:0px;
+	margin-right:0px;
+	z-index:10;
+}
+#game .fullWidth
+{
+	height:auto;
+	min-height:auto;
+}
+.fullWidth:before,.fullWidth:after
+{
+	content:'';
+	height:1px;
+	background:rgba(255,255,255,0.75);
+	position:absolute;
+	left:0px;
+	right:0px;
+	z-index:-1;
+}
+.fullWidth:before{top:-1px;}
+.fullWidth:after{bottom:-1px;}
+
+.fullWidth .thing-text
+{
+	margin-top:-4px;
+	margin-bottom:-4px;
+}
+.listing
+{
+	font-weight:normal;
+}
+
+Layout
+*main
+    contains:buttons, buildings, fairies1, technologytree, items1, menues, textbox
+    contains:tag:manu
+    contains:tag:pix
+    contains:tag:creature
+  *buttons
+    contains:Buttons
+*menues
+*res
+    contains:Resources
+    class:fullWidth
+*buildings
+    contains:Buildings
+    tooltip origin:left
+*textbox
+    contains:Log
+   names:hide
+   costs:hide
+*textboxclick
+contains:tag:textboxclick1
+*fairies1
+		tooltip origin:right
+    contains:tag:groupnature
+    contains:tag:groupwater
+    contains:tag:grouprock
+    contains:tag:groupair
+    contains:tag:grouplight
+    contains:tag:groupenergy
+    contains:tag:grouppsi
+    contains:tag:groupice
+    contains:tag:groupfire
+    contains:tag:groupmetal
+    contains:tag:groupchaos
+    contains:tag:groupdark
+    contains:tag:fairy0
+    contains:tag:fairy1
+    contains:tag:fairy2
+    contains:tag:fairy3
+    contains:tag:fairy4
+    contains:tag:fairy5
+    contains:tag:fairy6
+    contains:tag:fairy7
+    contains:tag:fairy8
+    contains:tag:fairy9
+    contains:tag:fairy10
+    contains:tag:fairy11
+    contains:tag:fairy12
+    contains:tag:fairy13
+    contains:tag:fairy14
+    contains:tag:fairy15
+    contains:tag:fairy16
+    contains:tag:fairy17
+    contains:tag:fairy18
+    contains:tag:fairy19
+    contains:tag:fairy20
+    contains:tag:fairy21
+    contains:tag:fairy22
+    contains:tag:fairy23
+    contains:tag:fairy24
+    contains:tag:fairy25
+    contains:tag:fairy26
+    contains:tag:fairy27
+    contains:tag:fairy28
+    contains:tag:fairy29
+    contains:tag:fairy30
+    contains:tag:fairy31
+    contains:tag:fairy32
+    contains:tag:fairy33
+    contains:tag:fairy34
+    contains:tag:fairy35
+    contains:tag:fairy36
+    contains:tag:fairy37
+    contains:tag:fairy38
+    contains:tag:fairy39
+    contains:tag:fairy40
+    contains:tag:fairy41
+    contains:tag:fairy42
+    contains:tag:fairy43
+    contains:tag:fairy44
+    contains:tag:fairy45
+    contains:tag:fairy46
+    contains:tag:fairy47
+    contains:tag:fairy48
+    contains:tag:fairy49
+    contains:tag:fairy50
+    costs:hide
+*technologytree
+    contains:tag:exch
+    contains:tag:techno
+    tooltip origin:top
+*items1
+    contains:tag:shop
+	contains:tag:items
+    contains:tag:items2
+    contains:tag:inv
+    contains:tag:items3
+    contains:tag:storeup
+    tooltip origin:top
+*artifacts
+    contains:tag:art
+    tooltip origin:left
+*pixiesreward1
+    contains:tag:pixrew1
+    tooltip origin:left
+    names:hide
+  *backbox
+    contains:tag:backgroundthing
+    names:hide
+  *backbox2
+    contains:tag:backgroundthing2	
+    names:hide
+
+Resources
+		*TEMPLATE
+		class:noBackground
+		icon class:topicons
+
+	*achiev
+		name:Achievements
+		desc:Achievements boost your gold production. You also get some special bonuses for them.</>Current boost: [0.025*achiev*100]% to your gold production.	
+		text:[achiev]/100 Achievs
+		icon:iconstop[0,2]
+		hidden when 0 
+		passive:multiply yield of gold by 0.025*achiev+1
+
+	*fairies
+		name:Fairies
+		desc:Феи - твоё главное оружие!
+		text:[fairies]/80 Fairies
+		icon:iconstop[0,0]
+		hidden when 0 
+
+	*pixies
+		name:Pixies
+		desc:Эти маленькие быстрые существа, разбежавшиеся в свое время по всей Занзаре. Эти хулиганы часто пугают местных жителей, особенно эльфов. За поимку пикси вы будете получать награду у Люциуса, охотника.
+		text:[pixies]/30 Pixies
+		icon:iconstop[2,0]
+
+	*pixiesreward
+		name:Pixies' rewards
+		desc:Сколько получено наград за поимку пикси.
+		text:[pixiesreward]/5 Rewards
+		icon:iconstop[0,1]
+		hidden when 0 
+
+	*artifact
+		name:Artifacts
+		desc:Сколько найдено уникальных предметов - артефактов.
+		text:[artifact]/6 Artifacts
+		icon:iconstop[1,0]
+		hidden when 0 
+
+	*crystal
+		text:Crystals: [floor(crystal)].[(crystal*pow(10,2))%pow(10,2)]
+		desc:Кристаллы - валюта гномов, подземных жителей Занзары. Более редкая, но более ценная.
+		icon:iconstop[1,1]
+
+	*gold
+		text:Gold: [gold] [?(gold:ps<1000)|- [floor(gold:ps)].[(gold:ps*pow(10,2))%pow(10,2)]/s|[gold:ps]/s]
+		desc:Главная валюта в Занзаре. Зарабатывай её как можно больше!
+		icon:iconstop[2,1]
+		start with:1000000
+
+*TEMPLATE
+no tooltip 
+class:noBackground
+
+*timer
+text:So far, [?seconds>=86400|[days] day|][?!(days=1) and seconds>=86400|s|][?seconds>=86400|, |only ][?seconds>=3600|[hours%24] hour|][?!(hours%24=1) and seconds>=3600|s|][?seconds>=3600|, |][?seconds>=60|[minutes%60] minute|][?!(minutes%60=1) and seconds>=60|s|][?seconds>=60|, and |][seconds%60] second[?seconds%60=1| has|s have] passed.
+    on tick:yield second
+always hidden
+
+*day|days
+    text:[this] d
+hidden
+
+*hour|hours
+    text:[this%24] h
+    is always:floor(seconds/86400)
+hidden
+
+*minute|minutes
+    text:[this%60] min
+    is always:floor(seconds/60)
+hidden
+
+*second|seconds
+    text:[this%60] sec
+hidden
+
+*sumlevel
+is always:(naturelevel+waterlevel+rocklevel)
+		
+*maxlevel
+
+
+*manacount
+
+*TEMPLATE
+no text
+
+*crystalexchange
+is always:(rockyield*3600)
+
+*manacost
+
+*littlepix
+
+//доходы с каждого здания
+*building1yield
+*building11yield
+*building111yield
+*building2yield
+*building22yield
+*building222yield
+*building3yield
+
+	*natureyield
+	on tick:natureyield is fairy0yield:ps
+	*wateryield
+	on tick:wateryield is fairy5yield:ps+fairy6yield:ps+fairy7yield:ps+fairy64yield:ps 
+	*rockyield
+	on tick:rockyield is fairy3yield:ps 
+	*airyield
+	*lightyield
+	*energyyield
+	*psiyield
+	*iceyield
+	*fireyield
+	*darkyield
+	*chaosyield
+	*metalyield
+
+//суммарный уровень стихии
+	*naturelevel
+	*airlevel
+	*waterlevel
+	*lightlevel
+	*energylevel
+	*psilevel
+	*rocklevel
+	*icelevel
+	*firelevel
+	*darklevel
+	*chaoslevel
+	*metallevel
+
+*aquanaevolve
+*oceanaevolve
+*viteriaevolve
+*boneriaevolve
+*gremorevolve
+*gremrockevolve
+
+	*ticker
+
+//счетчик фей определенных стихий
+	*nature
+	*air
+	*water
+	*light
+	*energy
+	*psi
+	*rock
+	*ice
+	*fire
+	*dark
+	*chaos
+	*metal
+
+//формулы силлии
+	*fairy0yield
+	*fairy0level
+	on start:yield (1+random(2,20)) fairy0level
+	*fairy0xp
+	on start:yield fairy0level*fairy0level*4.17 fairy0xp
+	*fairy0xpreq
+	on start:yield 4.17*(fairy0level+1)*(fairy0level+1) fairy0xpreq
+	*fairy0mana
+	on start:fairy0mana is floor(fairy0level/4)+15
+	*fairy0health
+
+//формулы витерии
+	*fairy1yield
+	*fairy1level
+	*fairy1xp
+	*fairy1xpreq
+	*fairy1mana
+	*fairy1health
+
+//формулы бонерии
+	*fairy2yield
+	*fairy2level
+	*fairy2xp
+	*fairy2xpreq
+	*fairy2mana
+	*fairy2health
+
+//формулы таданы
+	*fairy6yield
+	*fairy6level
+	on start:yield (1+random(3,21)) fairy6level
+	*fairy6xp
+	on start:yield fairy6level*fairy6level*4.17 fairy6xp
+	*fairy6xpreq
+	on start:yield 4.17*(fairy6level+1)*(fairy6level+1) fairy6xpreq
+	*fairy6mana
+	on start:fairy6mana is floor(fairy6level/4)+15 
+	*fairy6health
+
+//формулы акуаны
+	*fairy7yield
+	*fairy7level
+	*fairy7xp
+	*fairy7xpreq
+	*fairy7mana
+	*fairy7health
+
+//формулы океаны
+	*fairy8yield
+	*fairy8level
+	*fairy8xp
+	*fairy8xpreq
+	*fairy8mana
+	*fairy8health
+
+//формулы гупса
+	*fairy64yield
+	*fairy64level
+	on start:yield (1+random(2,11)) fairy64level
+	*fairy64xp
+	on start:yield fairy64level*fairy64level*4.17 fairy64xp
+	*fairy64xpreq
+	on start:yield 4.17*(fairy64level+1)*(fairy64level+1) fairy64xpreq
+	*fairy64mana
+	on start:fairy64mana is floor(fairy64level/4)+15
+	*fairy64health
+	
+//формулы грема
+	*fairy3yield
+	*fairy3level
+	on start:yield (1+random(3,15)) fairy3level
+	*fairy3xp
+	on start:yield fairy3level*fairy3level*4.17 fairy3xp
+	*fairy3xpreq
+	on start:yield 4.17*(fairy3level+1)*(fairy3level+1) fairy3xpreq
+	*fairy3mana
+	on start:fairy3mana is floor(fairy3level/4)+15
+	*fairy3health
+
+//формулы гремора
+	*fairy4yield
+	*fairy4level
+	*fairy4xp
+	*fairy4xpreq
+	*fairy4mana
+	*fairy4health
+
+//формулы гремрока
+	*fairy5yield
+	*fairy5level
+	*fairy5xp
+	*fairy5xpreq
+	*fairy5mana
+	*fairy5health
+
+Buttons
+*TEMPLATE
+		class:buildingfon 
+		tag:items
+
+	*manastore
+		name: Mana bottle
+		cost:50 gold
+		on tick:increase cost of this by 4*(natureyield+wateryield+rockyield)
+		on tick:
+		if (have storeup1)
+		multiply cost of this by 0.9
+		end
+		end
+		icon:buildings[0,6]
+		text:Mana bottle — [mana]
+		desc:Refills fairy's mana, allowing her to continue work. Price depends on the power of your fairies.
+		on click:
+		manacost is 4*(natureyield+wateryield+rockyield)+50
+		if (have storeup1) manacost is 0.9*(4*(natureyield+wateryield+rockyield)+50)		
+		if (gold>=manacost)
+		yield 1 mana
+		yield 1 manacount
+		lose manacost gold
+		else
+		toast Not enough gold to buy mana.
+		end
+		end
+		end
+
+	*silverspherestore
+		name: Silver Sphere
+		text:Silver Sphere — [silversphere]
+		desc:Allows you to capture a fairy below 20 lvl. Price depends of the amount of fairies.
+		icon:buildings[1,5]
+		on tick:multiply cost of this by (fairies+1)
+		on tick:
+		if (have storeup1) multiply cost of this by 0.9
+		end
+		cost:100 gold
+		on click:
+		$silverspherecost is 100*(fairies+1)
+		if (have storeup1) $silverspherecost is 0.9*$silverspherecost
+		if (gold>=$silverspherecost)
+		yield 1 silversphere
+		lose $silverspherecost gold
+		end 
+		end 
+
+	*goldenspherestore
+		name:Golden Sphere
+		text:Golden Sphere — [goldensphere]
+		desc:Allows you to capture a fairy below 40 lvl.<//>
+		icon:buildings[2,5]
+		cost:50000 gold
+		on tick:multiply cost of this by (fairies+1)
+		on tick:
+		if (have storeup1) multiply cost of this by 0.9
+		end
+		on click:
+		$goldenspherecost is 50000*(fairies+1)
+		if (have storeup1) $goldenspherecost is 0.9*$goldenspherecost
+		if (gold>=$goldenspherecost)
+		yield 1 goldensphere
+		lose $goldenspherecost gold
+		end 
+		end 
+
+	*crystalspherestore
+		name:Crystal Sphere 
+		text:Crystal Sphere  — [crystalsphere]
+		desc:Allows you to capture a fairy above 40 lvl.<//>
+		icon:buildings[3,5]
+		cost:500000 gold
+		on tick:multiply cost of this by (fairies+1)
+		on tick:
+		if (have storeup1) multiply cost of this by 0.9
+		end
+		on click:
+		$crystalspherecost is 500000*(fairies+1)
+		if (have storeup1) $crystalspherecost is 0.9*$crystalspherecost
+		if (gold>=$crystalspherecost)
+		yield 1 crystalsphere
+		lose $crystalspherecost gold
+		end 
+		end 
+
+	*goldencarrotstore
+		name:Golden Carrot
+		text:Golden Carrot  — [goldencarrot]
+		desc:Instantly gives a fairy +1 level. Cost depends on your fairies' levels.
+		icon:buildings[0,5]
+		cost:100 gold
+		on tick:multiply cost of this by sumlevel
+		on tick:
+		if (have storeup1) multiply cost of this by 0.9
+		end
+		on click:
+		$goldcarcost is 100*sumlevel
+		if (have storeup1) $goldcarcost is 0.9*$goldcarcost
+		if (gold>=$goldcarcost)
+		yield 1 goldencarrot
+		lose $goldcarcost gold
+		end 
+		end 
+
+	*evolvenaturestore
+		text:Elemental Stone of Nature
+		desc:Evolves Pfoe into Taze or Tinefol into Tinerog
+		icon:buildings[3,6]
+
+	*evolveairstore
+		text:Elemental Stone of Air
+		desc:Evolves Tinefol into Tineves
+		icon:buildings[1,6]
+		req:gold:ps>1000000000000000
+
+	*evolvefirestore
+		text:Elemental Stone of Fire
+		desc:Evolves Flagwin into Dracwin or Tinefol into Tinezard
+		icon:buildings[2,6]
+		req:gold:ps>1000000000000000
+
+	*dwarvestoolsstore
+		text:Tools of the Dwarves
+		desc:Evolves Minari into Megari and finally to Gigarex
+		icon:buildings[4,5]
+		req:gold:ps>1000000000000000
+
+*pixiejoke
+name:Littlepixie
+no text
+tag:pix
+class:pixiefon
+no tooltip
+
+*Help
+no text
+desc:Here's the fucking help.
+tag:creature
+class:creaturefon
+hidden
+
+*exchange
+    text:[crystalexchange] gold for 1 crystal
+    desc: Now you can exchange gold for crystals. Be aware, that dwarves are quite greedy. 
+    tag:exch
+    class:techfon
+    icon:buildings[4,5]
+    on click:
+        if (gold>=crystalexchange)
+            yield 1 crystal
+            lose crystalexchange gold
+        end
+    end
+
+*exchange2
+    text:1 crystal for [crystalexchange/3] gold
+    desc: Now you can exchange crystals for gold.
+    tag:exch
+    class:techfon
+    icon:buildings[4,5]
+    on click:
+        if (crystal>=1)
+            lose 1 crystal
+            yield crystalexchange/3 gold
+        end
+    end
+
+Shinies
+	*luckypixies
+		on click:log A pixie is on the screen!
+		movement:shrink anywhere pulse:0.1 fade bobVertical 
+		duration:20
+		frequency:300
+		frequency variation:60
+		icon:https://imgur.com/UducfS9.png
+		class:bigButton
+		on click:
+			$boost=1
+			if (have clover) $boost=4
+				$amount=max(7,random(gold:ps*900,gold:ps*60*1200))*$boost
+				yield $amount gold
+				toast Ты получил [$amount] золота!
+else
+			$sumka=1
+			if (have pixiesumka) $sumka=2
+			if (chance(50%))
+				$pix=1*$sumka
+				yield $pix pixies 
+				toast Ты нашёл [$pix] пикси!
+
+else
+				toast Ты упустил пикси!
+			end
+		end
+
+Buildings
+*endeva1
+text: Endeva Village
+		desc:Endeva is the place where you start your jorney. It is located in the middle of the Fairy Garden. Catch some fairies and send them to work. After a while you'll open new locations with new fairies to catch and buildings to build. Good luck! 
+		icon:buildings[0,0]	
+		class:endeva
+		no tooltip
+		on click:
+		hide building1
+		hide building2
+		hide building3
+		hide this
+		show endeva2
+		end
+		on click:
+		hide Background2
+		hide Background2night		
+		if (hours<12)
+		show Background1
+		else
+		show Background1night
+		end 
+		end  
+
+
+*endeva2
+text: Endeva Village
+		desc:Endeva is the place where you start your jorney. It is located in the middle of the Fairy Garden. Catch some fairies and send them to work. After a while you'll open new locations with new fairies to catch and buildings to build. Good luck! 
+		class:endeva
+		no tooltip
+		icon:buildings[0,0]	
+		on click:
+		show building1
+		show building2
+		show building3
+		show endeva1
+		hide this
+		end
+		on click:
+		hide Background2
+		hide Background2night		
+		if (hours<12)
+		show Background1
+		else
+		show Background1night
+		end 
+		end  
+		hidden
+
+*TEMPLATE
+class:buildingfon
+
+	*building1
+		name:Sawmill I
+		desc:Sawmill for your nature fairies to work on. You will open an improved sawmill after having 25 of these.</><q>I will earn you some greens, miss!<q>  <//><b>Effect:</b><.>Produces  [building1yield:ps] gold/s<//>
+		icon:buildings[2,1]
+		cost:100 gold
+	    cost increase:110%
+	    cost refund:100%
+		on tick:
+		if (have Sillia and fairy0mana>0.01)
+		yield (fairy0level/6) gold
+		yield (fairy0level/6) fairy0yield
+		yield (fairy0level/6) building1yield
+		end
+		end
+		on tick:
+		if (have Viteria and fairy1mana>0.01)
+		yield (fairy1level/2) gold
+		yield (fairy1level/2) fairy1yield
+		yield (fairy1level/2) building1yield
+		end
+		end
+		on tick:
+		if (have Boneria and fairy2mana>0.01)
+		yield (fairy2level*1.5) gold
+		yield (fairy2level*1.5) fairy2yield
+		yield (fairy2level*1.5) building1yield
+		end
+		end
+
+	*building11
+		name:Sawmill II
+		desc:An improved sawmill. You will open an improved sawmill after having 25 of these. </><q>I will earn you some greens, miss!<q>  <//><b>Effect:</b><.>Produces  [building11yield:ps] gold/s<//>
+		icon:buildings[2,1]
+		cost:50000 gold
+	    cost increase:112%
+	    cost refund:100%
+		on tick:
+		if (have Sillia and fairy0mana>0.01)
+		yield (fairy0level*5) gold
+		yield (fairy0level*5) fairy0yield
+		yield (fairy0level*5) building11yield
+		end
+		end
+		on tick:
+		if (have Viteria and fairy1mana>0.01)
+		yield (fairy1level*15) gold
+		yield (fairy1level*15) fairy1yield
+		yield (fairy1level*15) building11yield
+		end
+		end
+		on tick:
+		if (have Boneria and fairy2mana>0.01)
+		yield (fairy2level*45) gold
+		yield (fairy2level*45) fairy2yield
+		yield (fairy2level*45) building11yield
+		end
+		end
+		req:25 building1
+
+	*building111
+		name:Sawmill III
+		desc:A very powerful sawmill.</><q>I will earn you some greens, miss!<q>  <//><b>Effect:</b><.>Produces  [building111yield:ps] gold/s<//>
+		icon:buildings[2,1]
+		cost:25000000 gold
+	    cost increase:114%
+	    cost refund:100%
+		on tick:
+		if (have Sillia and fairy0mana>0.01)
+		yield (fairy0level*20) gold
+		yield (fairy0level*20) fairy0yield
+		yield (fairy0level*20) building111yield
+		end
+		end
+		on tick:
+		if (have Viteria and fairy1mana>0.01)
+		yield (fairy1level*100) gold
+		yield (fairy1level*100) fairy1yield
+		yield (fairy1level*100) building111yield
+		end
+		end
+		on tick:
+		if (have Boneria and fairy2mana>0.01)
+		yield (fairy2level*360) gold
+		yield (fairy2level*360) fairy2yield
+		yield (fairy2level*360) building111yield
+		end
+		end
+		req:25 building11
+
+	*building2
+		name:Watermill I
+		desc:Repair this old Watermill using the power of your water fairies. You'll access a more powerfull Watermill after having 25 of these. <//><b>Effect:</b><.>Produces [building2yield:ps] gold/s
+		icon:buildings[4,0]
+		cost:100 gold
+	    cost increase:109.8%
+		on tick:
+		if (have Goop and fairy64mana>0.01)
+		yield (fairy64level/5) gold
+		yield (fairy64level/5) fairy64yield
+		yield (fairy64level/5) building2yield
+		end
+		end
+		on tick:
+		if (have Tadana and fairy6mana>0.01)
+		yield (fairy6level/6) gold
+		yield (fairy6level/6) fairy6yield
+		yield (fairy6level/6) building2yield
+		end
+		end
+		on tick:
+		if (have Aquana and fairy7mana>0.01)
+		yield (fairy7level/2) gold
+		yield (fairy7level/2) fairy7yield
+		yield (fairy7level/2) building2yield
+		end
+		end
+		on tick:
+		if (have Oceana and fairy7mana>0.01)
+		yield (fairy8level*1.5) gold
+		yield (fairy8level*1.5) fairy8yield
+		yield (fairy8level*1.5) building22yield
+		end
+		end
+
+	*building22
+		name:Watermill II
+		desc:A more powerful watermill.  You'll access a very powerfull Watermill after having 25 of these. <//><b>Effect:</b><.>Produces [building22yield:ps] gold/s
+		icon:buildings[4,0]
+		cost:25000 gold
+	    cost increase:112.4%
+		on tick:
+		if (have Goop and fairy64mana>0.01)
+		yield (fairy64level*4) gold
+		yield (fairy64level*4) fairy64yield
+		yield (fairy64level*4) building22yield
+		end
+		end
+		on tick:
+		if (have Tadana and fairy6mana>0.01)
+		yield (fairy6level*3.4) gold
+		yield (fairy6level*3.4) fairy6yield
+		yield (fairy6level*3.4) building22yield
+		end
+		end
+		on tick:
+		if (have Aquana and fairy7mana>0.01)
+		yield (fairy7level*10) gold
+		yield (fairy7level*10) fairy7yield
+		yield (fairy7level*10) building22yield
+		end
+		end
+		on tick:
+		if (have Oceana and fairy7mana>0.01)
+		yield (fairy8level*30) gold
+		yield (fairy8level*30) fairy8yield
+		yield (fairy8level*30) building22yield
+		end
+		end
+		req:25 building2
+
+	*building222
+		text:Watermill III
+		desc:Very expensive but very powerful watermill. <//><b>Effect:</b><.>Produces [building222yield:ps] gold/s
+		icon:buildings[4,0]
+		cost:200000000000 gold
+	    cost increase:115%
+		on tick:
+		if (have Goop and fairy64mana>0.01)
+		yield (fairy64level*80) gold
+		yield (fairy64level*80) fairy64yield
+		yield (fairy64level*80) building222yield
+		end
+		end
+		on tick:
+		if (have Tadana and fairy6mana>0.01)
+		yield (fairy6level*68) gold
+		yield (fairy6level*68) fairy6yield
+		yield (fairy6level*68) building222yield
+		end
+		end
+		on tick:
+		if (have Aquana and fairy7mana>0.01)
+		yield (fairy7level*200) gold
+		yield (fairy7level*200) fairy7yield
+		yield (fairy7level*200) building222yield
+		end
+		end
+		on tick:
+		if (have Oceana and fairy7mana>0.01)
+		yield (fairy8level*600) gold
+		yield (fairy8level*600) fairy8yield
+		yield (fairy8level*600) building222yield
+		end
+		end
+		req:25 building22
+
+	*building3
+		name:Mine
+		desc:Cozy little mine, where your Rock Fairies could work. If you're lucky, you will find crystals in this cave.<//><b>Effect:</b><.>Produces [building3yield:ps] gold/s
+		icon:buildings[5,2]
+		cost:100 gold
+	    cost increase:110%
+		on tick:
+		if (have Grem and fairy3mana>0.01)
+		yield (fairy3level/3) gold
+		yield (fairy3level/3) fairy3yield
+		yield (fairy3level/3) building3yield
+		end
+		end
+		on tick:
+		if (have Grem and fairy3mana>0.01 and chance(0.1%))
+		yield 0.1 crystal
+		end
+		end
+	on tick:
+		if (have Gremor and fairy4mana>0.01)
+		yield (fairy4level) gold
+		yield (fairy4level) fairy4yield
+		yield (fairy4level) building3yield
+		end
+		end
+		on tick:
+		if (have Grem and fairy4mana>0.01 and chance(0.2%))
+		yield 0.1 crystal
+		end
+		end
+		on tick:
+		if (have Grem and fairy3mana>0.01 and chance(0.4%))
+		yield 0.1 crystal
+		end
+		end
+	on tick:
+		if (have Gremrock and fairy5mana>0.01)
+		yield (fairy5level*5) gold
+		yield (fairy5level*5) fairy5yield
+		yield (fairy5level*5) building3yield
+		end
+		end
+		on tick:
+		if (have Grem and fairy5mana>0.01 and chance(2%))
+		yield 0.1 crystal
+		end
+		end
+
+
+
+
+*TEMPLATE
+req:1000000000000000 gold
+
+	*building4
+		text:Scarecrow
+		desc:Here lives Lucius, The Pixiehunter. From now on he will reward you for catching pixies!<//>
+		class:endeva
+		icon:buildings[0,1]
+		on click:
+		hide Background1
+		hide Background1night
+		if (hours<12)
+		show Background2
+		else
+		show Background2night
+		end 
+		end 
+		no buy
+		hidden 
+
+
+	*building5
+		name:Waterfalls
+		desc:Waterfalls contain great power. You can make use of it.<//>
+		class:buildingfon
+		icon:buildings[0,2]
+		hidden
+
+	*building6
+		name:Mill
+		desc:Fairy Garden, in all it's greatness..<//>
+		class:buildingfon
+		icon:buildings[3,0]
+		hidden
+
+	*building7
+		name:Dark caves
+		desc:Fairy Garden, in all it's greatness..<//>
+		class:buildingfon
+		icon:buildings[5,1]
+		hidden
+
+	*building8
+		name:Dwarves tower
+		desc:Fairy Garden, in all it's greatness..<//>
+		class:buildingfon
+		icon:buildings[6,1]
+		hidden
+
+	*building9
+		name:Ruins
+		desc:Fairy Garden, in all it's greatness..<//>
+		class:buildingfon
+		icon:buildings[6,0]
+		hidden
+
+
+*TEMPLATE
+
+//items
+*shop1
+name:Shop
+no tooltip
+no text
+class:shopfon
+tag:shop
+on click:
+hide manastore
+hide silverspherestore
+hide goldenspherestore
+hide crystalspherestore
+hide goldencarrotstore
+hide evolvenaturestore
+hide evolveairstore
+hide evolvefirestore
+hide dwarvestoolsstore
+hide this
+show shop2
+end
+
+*shop2
+name:Shop
+no tooltip
+no text
+class:shopfon
+tag:shop
+on click:
+show manastore
+show silverspherestore
+show goldenspherestore
+show crystalspherestore
+show goldencarrotstore
+show evolvenaturestore
+show evolveairstore
+show evolvefirestore
+show dwarvestoolsstore
+show shop1
+hide this
+end
+hidden
+
+*TEMPLATE
+tag:items2
+class:buildingfon
+
+*TEMPLATE
+*inv1
+tag:inv
+name:Inv
+no tooltip
+no text
+class:invfon
+on click:
+hide mana
+hide silversphere
+hide goldensphere
+hide crystalsphere
+hide goldencarrot
+hide evolvenature
+hide evolveair
+hide evolvefire
+hide dwarvestools
+hide this
+show inv2
+end
+
+
+*inv2
+tag:inv
+name:Inv
+no tooltip
+no text
+class:invfon
+on click:
+show mana
+show silversphere
+show goldensphere
+show crystalsphere
+show goldencarrot
+show evolvenature
+show evolveair
+show evolvefire
+show dwarvestools
+hide this
+show inv1
+end
+hidden
+
+*TEMPLATE
+tag:items3
+class:itemfon
+
+	*mana
+		name:Mana 
+		desc:Refills fairy's mana, allowing her to continue work. Price depends on the amount of fairies you have.
+		icon:buildings[0,6]
+		hidden when 0
+		no buy
+
+	*silversphere
+		name:Silver Sphere
+		desc:Allows you to capture a fairy below 20 lvl. Price is shown per fairy; you have [fairies] fairies, that means this will cost you [50*fairies] gold.<//>
+		icon:buildings[1,5]
+		hidden when 0
+		no buy
+
+	*goldensphere
+		name:Golden Sphere
+		desc:Allows you to capture a fairy below 40 lvl.<//>
+		icon:buildings[2,5]
+		hidden when 0
+		no buy
+
+	*crystalsphere
+		name:Crystal Sphere
+		desc:Allows you to capture a fairy above 40 lvl.<//>
+		icon:buildings[3,5]
+		hidden when 0
+		no buy
+
+	*goldencarrot
+		name:Golden Carrot
+		desc:Instantly gives a fairy +1 level.
+		icon:buildings[0,5]
+		hidden when 0
+		no buy
+
+	*evolvenature
+		name:Elemental Stone of Nature
+		desc:Evolves Pfoe into Taze or Tinefol into Tinerog
+		icon:buildings[3,6]
+		hidden when 0
+		no buy
+
+	*evolveair
+		name:Elemental Stone of Air
+		desc:Evolves Tinefol into Tineves
+		icon:buildings[1,6]
+		hidden when 0
+		no buy
+
+	*evolvefire
+		name:Elemental Stone of Fire
+		desc:Evolves Flagwin into Dracwin or Tinefol into Tinezard
+		icon:buildings[2,6]
+		hidden when 0
+		no buy
+
+	*dwarvestools
+		name:Tools of the Dwarves
+		desc:Evolves Minari into Megari and finally to Gigarex
+		icon:buildings[4,5]
+		hidden when 0
+		no buy
+
+Upgrades
+
+*storeup1
+		tag:storeup
+		class:buildingfon
+		name:Store Upgrade I
+		desc:All costs in this store are reduced by 10%.
+		icon:buildings[0,6]
+		cost:10000 gold
+
+		*TEMPLATE
+*groupnature
+name:Nature
+class:naturefon
+tag:groupnature
+text: Nature Fairies [nature]/15 
+icon:elements[0,0]
+no tooltip
+on click:
+hide Sillia
+hide Viteria
+hide Boneria
+hide Blumella
+show groupnature1
+hide this
+end
+
+*groupnature1
+name:Nature1
+class:naturefon
+tag:groupnature
+text: Nature Fairies  
+icon:elements[0,0]
+no tooltip
+on click:
+show Sillia
+show Viteria
+show Boneria
+show Blumella
+show groupnature
+hide this
+end
+hidden
+
+		*TEMPLATE
+		on earn:yield 1 nature
+		on earn:yield 1 fairies
+		on earn:yield 1 groupnature
+		on earn:yield 1 groupnature1
+		class:fairyfon
+
+*Sillia
+name:Sillia
+text:[?(have this)|Sillia — lvl [fairy0level]|You don't have this fairy yet!][?(have this and fairy0level<60)|, mana [fairy0mana]|] 
+tag:fairy0
+tag:groupnature
+desc:</>Nature Fairies, like Sillia, get their energy from the living things around them. These beings hate being fenced in, therefore you'll only find them out of doors, under trees, in bushes or in the undergrowth. She evolves into Viteria at level 35.[?(have this)|</><b>Yield: [floor(fairy0yield:ps)].[(fairy0yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy0yield] ([fairy0yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy0health]/[fairy0level*5]</b>|][?(have this)|</><b>Level: [fairy0level]/60</b>|][?(have this and fairy0level<60)|</><b>Mana: [floor(fairy0mana)].[(fairy0mana*pow(10,2))%pow(10,2)]/[floor(fairy0level/4)+15]</b>| ][?(have this)|</><b>XP: [fairy0xp] — [floor(fairy0xp:ps)].[(fairy0xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy0xpreq-fairy0xp]</b>|]
+icon:icons[0,5]
+cost:1 silversphere and 50 gold
+on earn:
+if (chance(5%))
+lose 1 this
+lose 1 fairies
+lose 1 nature
+yield 1 silversphere
+toast This fairy escaped!
+else
+fairy0level is ceil(fairy0level*0.15)
+fairy0xp is fairy0level*fairy0level*4.17
+fairy0mana is floor(fairy0level/4)*15
+yield floor(fairy0level/4+15) fairy0mana
+fairy0health is 5*fairy0level 
+yield fairy0level naturelevel
+toast You catched the fairy!
+end
+end
+on tick:
+if (have this and mana>=1 and fairy0mana<0.5)
+yield floor(fairy0level/4+15) fairy0mana
+toast Sillia's mana refilled. This fairy continues to work.	
+lose 1 mana	
+end
+end
+on click:
+if (have this and no goldencarrot and fairy0level>10 and fairy0level<=59 and fairy0mana>0.01)
+toast You don't have any golden carrots to spend.
+else if (have this and goldencarrot>=1 and fairy0level<10 and fairy0mana>0.01)
+toast Once Sillia reaches 10 level you'd be able to feed this fairy with golden carrots.
+else if (have this and goldencarrot>=1 and fairy0level is 60)
+toast This fairy is already at 60 level.
+else if (have this and goldencarrot>=1 and fairy0level>=10 and fairy0level<=59 and fairy0xp>0 and fairy0xpreq-fairy0xp>1 and fairy0mana>0)
+$goldcarboost=fairy0xpreq-fairy0xp-1
+yield $goldcarboost fairy0xp
+lose 1 goldencarrot
+toast Golden Carrot was successfully spent.
+end
+end
+on tick:
+if (have Sillia and mana is 0 and fairy0mana is 0)
+yield 0.001 fairy0mana
+toast Sillia's ran out of mana. Buy some mana so this fairy could continue to work.
+end
+end
+on tick:
+if (fairy0level<60 and fairy0mana>0.01)
+yield 0.1*(building1+building11+building111) fairy0xp
+lose (0.05*(building1+building11+building111))/(1+0.069*fairy0level) fairy0mana
+end
+end
+on tick:
+fairy0xpreq=4.17*(fairy0level+1)*(fairy0level+1)
+if (fairy0xp>=fairy0xpreq)
+yield 0.5 fairy0level
+yield 0.5 naturelevel
+toast Sillia achieved [fairy0level+1] level!
+end
+end
+on tick:
+if (fairy0xp>5108 and no viteriaevolve)
+show Viteria
+toast Sillia is ready to evolve to Viteria. Click on the Viteria to evolve (Notice, that you are going to lose your Sillia!)
+yield viteriaevolve
+end
+end
+
+	*Viteria
+		text: [?(have this)|Viteria — lvl [fairy1level]|Click to evolve from Sillia!] [?(have this and fairy1level<60)|, mana [fairy1mana]| ]
+		tag:fairy1
+		tag:groupnature
+		desc:</> Gentle Viteria spends her time in the dizzying heights of the trees. You'll only be able to catch her at inattentive moments and with much skill.She evolves into Boneria at level 50.[?(have this)|</><b>Yield: [floor(fairy1yield:ps)].[(fairy1yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy1yield] ([fairy1yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy1health]/[fairy1level*5]</b>|][?(have this)|</><b>Level: [fairy1level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy1mana)].[(fairy1mana*pow(10,2))%pow(10,2)]/[floor(fairy1level/4)+15]</b>|][?(have this)|</><b>XP: [fairy1xp] — [floor(fairy1xp:ps)].[(fairy1xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy1xpreq-fairy1xp]</b>|]
+		icon:icons[1,5]
+		on earn:
+		if (have Sillia and fairy0xp>=5108)
+		lose Sillia
+		lose 1 fairies
+		lose 1 nature
+		fairy1level is fairy0level 
+		fairy1xp is (fairy0level*fairy0level*4.17) 
+		fairy1xpreq is (4.17*(fairy0level+1)*(fairy0level+1)) 
+		fairy1mana is fairy0mana
+		toast Sillia evolved into Viteria!
+		else
+		lose this
+		lose 1 nature
+		lose 1 fairies
+		end
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy1mana<0.5)
+		lose 0.01 fairy1mana
+		yield fairy1level/4+15 fairy1mana
+		lose 1 mana	
+		toast Viteria's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy1level>10 and fairy1level<=59 and fairy1mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy1level<10 and fairy1mana>0.01)
+		toast Once Tadana reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy1level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy1level>=10 and fairy1level<=59 and fairy1xp>0 and fairy1xpreq-fairy1xp>1 and fairy1mana>0)
+		$goldcarboost=fairy1xpreq-fairy1xp-1
+		yield $goldcarboost fairy1xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy1mana is 0)
+		yield 0.001 fairy1mana
+		toast Viteria's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end	
+		end
+		on tick:
+		if (fairy1level<60 and fairy1mana>0.01)
+		//потеря маны в секунду
+		lose (0.045*(building1+building11+building111))/(1+0.069*fairy1level) fairy1mana
+		// скорость набора опыта
+		yield 0.06*(building1+building11+building111) fairy1xp
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy1xpreq=4.17*(fairy1level+1)*(fairy1level+1)
+		if (fairy1xp>=fairy1xpreq)
+		yield 0.5 fairy1level
+		yield 0.5 naturelevel
+		toast Viteria achieved [fairy1level+1] level!
+		end
+		end
+		on tick:
+		if (fairy1xp>10245 and no boneriaevolve)
+		show Boneria
+		toast Viteria is ready to evolve to Boneria. Click on the Boneria to evolve. Once evolved, Boneria will gain all the XP Viteria had and you shall lose your Viteria.
+		yield boneriaevolve
+		end
+		end
+		hidden
+		req:viteriaevolve or Boneria
+
+	*Boneria
+		text:[?(have this)|Boneria — lvl [fairy2level]|Click to evolve from Viteria!] [?(have this and fairy2level<60)|, mana [fairy2mana]| ]
+		cost:Viteria
+		tag:fairy2
+		tag:groupnature
+		desc:</> Though she mostly stays among the ferns, Boneria sometimes makes her mossy bed on the cool, shadowy trunk of a mammoth tree. Her hot temper exceeds that of any Nature Fairy, which makes her very powerful in a fight.[?(have this)|</><b>Yield: [floor(fairy2yield:ps)].[(fairy2yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy2yield] ([fairy2yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy2health]/[fairy2level*5]</b>|][?(have this)|</><b>Level: [fairy2level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy2mana)].[(fairy2mana*pow(10,2))%pow(10,2)]/[floor(fairy2level/4)+15]</b>|][?(have this)|</><b>XP: [fairy2xp] — [floor(fairy2xp:ps)].[(fairy2xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy2xpreq-fairy2xp]</b>|]
+		icon:icons[2,5]
+		on earn:
+		lose Viteria
+		lose 1 fairies
+		lose 1 nature
+		fairy2level is fairy1level 
+		fairy2xp is (fairy1level*fairy1level*4.17) 
+		fairy2xpreq is (4.17*(fairy1level+1)*(fairy1level+1)) 
+		fairy2mana is fairy1mana
+		toast Viteria evolved into Boneria!
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy2mana<0.5)
+		lose 0.01 fairy2mana
+		yield fairy2level/4+15 fairy2mana
+		lose 1 mana	
+		toast Boneria's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy2level>10 and fairy2level<=59 and fairy2mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy2level<10 and fairy2mana>0.01)
+		toast Once Tadana reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy2level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy2level>=10 and fairy2level<=59 and fairy2xp>0 and fairy2xpreq-fairy2xp>1 and fairy2mana>0)
+		$goldcarboost=fairy2xpreq-fairy2xp-1
+		yield $goldcarboost fairy2xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy2mana is 0)
+		yield 0.001 fairy2mana
+		toast Boneria's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end		
+		end	
+		on tick:
+		if (fairy2level<60 and fairy2mana>0.01)
+		// скорость набора опыта
+		yield 0.03*(building1+building11+building111) fairy2xp
+		//потеря маны в секунду
+		lose (0.04*(building1+building11+building111))/(1+0.069*fairy2level) fairy2mana
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy2xpreq=4.17*(fairy2level+1)*(fairy2level+1)
+		if (fairy2xp>=fairy2xpreq)
+		yield 0.5 fairy2level
+		yield 0.5 naturelevel
+		toast Boneria achieved [fairy2level+1] level!
+		end
+		end
+		req:boneriaevolve
+
+	*Blumella
+		name:Blumella
+		tag:fairy26
+		tag:groupnature
+		desc:This delicate creature is extremely agile and nature-loving. It will punish anyone who causes even the slightest damage to her beloved home, the forests of Zanzarah, with small attacks..<//>
+		icon:icons[2,7]
+		req:Viteria
+
+	*Worgot
+		name:Worgot
+		tag:fairy9
+		tag:groupnature
+		desc:As larvae, Worgots depend on symbiosis with their flying companions, which they cannot completely steer yet. This strange pair can be found in the bark of trees, in blossoming plants and in swamps.<//>
+		icon:icons[9,5]
+		req:Viteria
+
+	*Corgot
+		name:Corgot
+		tag:fairy10
+		tag:groupnature
+		desc:A Worgot, who transforms into a Corgot, carries the larva which steers it in its interior, whereas its exterior can fully focus on its plant-like limbs.<//>
+		icon:icons[10,5]
+		req:Worgot
+
+
+	*Symgot
+		name:Symgot
+		tag:fairy11
+		tag:groupnature
+		desc:Symgots are the perfect symbiosis of worm and fly. They are not very nice to look at, and the worm has the full spiritual control over the being. This way it defends itself against nearly every attack.<//>
+		icon:icons[11,5]
+		req:Corgot
+
+	*Lana
+		name:Lana
+		tag:fairy75
+		tag:groupnature
+		desc:It honours its naivety as it allows it to be harmonius, and endeavours to train all its skills equally. It will be just as balanced in a fight, provided it never has to deal with more than one opponent...<//>
+		icon:icons[3,11]
+		req:100000 gold:ps
+
+	*Liana
+		name:Liana
+		tag:fairy76
+		tag:groupnature
+		desc:It darts past the spectator in the shade of old and high trees. Only the glitter of the morning dew will lure the cautious, fast being out, therefore it can only be caught in inattentive moments.<//>
+		icon:icons[4,11]
+		req:Lana
+
+		*TEMPLATE
+*grouprock
+class:rockfon
+tag:grouprock
+text: Rock Fairies [rock]/8
+icon:elements[2,0]
+no tooltip
+on click:
+hide Grem
+hide Gremor
+hide Gremrock
+show grouprock1
+hide this
+end
+
+*grouprock1
+class:rockfon
+tag:grouprock
+text: Rock Fairies 
+icon:elements[2,0]
+no tooltip
+on click:
+show Grem
+show Gremor
+show Gremrock
+show grouprock
+hide this
+end
+hidden
+
+		*TEMPLATE
+		on earn:yield 1 fairies
+		on earn:yield 1 rock
+		on earn:yield 1 grouprock
+		on earn:yield 1 grouprock1
+		class:fairyfon
+		tag:grouprock
+
+	*Grem
+		text:[?(have this)|Grem — lvl [fairy3level]|You don't have this fairy yet!][?(have this and fairy3level<60)|, mana [fairy3mana]|] 
+		tag:fairy3
+		tag:grouprock
+desc:</>Grems are beings which can mainly be found in stone deserts, but also in big rocks in Zanzarah. These strong beings are cowardly at first, but their courage grows with their success. He evolves into Gremor at level 30. [?(have this)|</><b>Yield: [floor(fairy3yield:ps)].[(fairy3yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy3yield] ([fairy3yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy3health]/[fairy3level*5]</b>|][?(have this)|</><b>Level: [fairy3level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy3mana)].[(fairy3mana*pow(10,2))%pow(10,2)]/[floor(fairy3level/4)+15]</b>|][?(have this)|</><b>XP: [fairy3xp] — [floor(fairy3xp:ps)].[(fairy3xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy3xpreq-fairy3xp]</b>|]
+		cost:50 gold and 1 silversphere
+		icon:icons[3,5]
+		// обнуление феи при покупке
+		on earn:
+		if (chance(1%))
+		lose 1 this
+		lose 1 fairies
+		lose 1 water
+		yield 1 silversphere
+		toast This fairy escaped!
+		else
+		fairy3level is ceil(fairy3level*0.15)
+		fairy3xp is fairy3level*fairy3level*4.17
+		fairy3mana is floor(fairy3level/4)*15
+		yield floor(fairy3level/4+15) fairy3mana
+		yield fairy3level rocklevel
+		toast You catched the fairy!
+		end
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy3mana<=0.1)
+		lose 0.01 fairy3mana
+		yield floor(fairy3level/4)+15 fairy3mana
+		lose 1 mana	
+		toast Grem's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy3level>10 and fairy3level<=59 and fairy3mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy3level<10 and fairy3mana>0.01)
+		toast Once Grem reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy3level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy3level>=10 and fairy3level<=59 and fairy3xp>0 and fairy3xpreq-fairy3xp>1 and fairy3mana>0)
+		$goldcarboost=fairy3xpreq-fairy3xp-1
+		yield $goldcarboost fairy3xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy3mana is 0)
+		yield 0.001 fairy3mana
+		toast Grem's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end		
+		end	
+		on tick:
+		if (fairy3level<60 and fairy3mana>0.01)
+		//потеря маны в секунду
+		lose (0.045*building3)/(1+0.072*fairy3level) fairy3mana
+		// скорость набора опыта
+		yield 0.14*building3 fairy3xp
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy3xpreq=4.17*(fairy3level+1)*(fairy3level+1)
+		if (fairy3xp>=fairy3xpreq)
+		yield 0.5 fairy3level
+		yield 0.5 rocklevel
+		toast Grem achieved [fairy3level+1] level!
+		end
+		end
+		on tick:
+		if (fairy3xp>3753 and no gremorevolve)
+		show Gremor
+		toast Grem is ready to evolve to Gremor. Click on the Gremor to evolve (Notice, that you are going to lose your Grem!)
+		yield gremorevolve
+		end
+		end
+
+	*Gremor
+		text: [?(have this)|Gremor — lvl [fairy4level]|Click to evolve from Grem!] [?(have this and fairy4level<60)|, mana [fairy4mana]| ]
+		tag:fairy4
+		tag:grouprock
+		desc:</> If a Grem metamorphoses to a Gremor, his strength, maturity and valor are increased. His good-naturedness doesn't influence his fighting, but as a companion he'll soon make friends with other fairies. He evolves into Gremrock at level 50.[?(have this)|</><b>Yield: [floor(fairy4yield:ps)].[(fairy4yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy4yield] ([fairy4yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy4health]/[fairy4level*5]</b>|][?(have this)|</><b>Level: [fairy4level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy4mana)].[(fairy4mana*pow(10,2))%pow(10,2)]/[floor(fairy4level/4)+15]</b>|][?(have this)|</><b>XP: [fairy4xp] — [floor(fairy4xp:ps)].[(fairy4xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy4xpreq-fairy4xp]</b>|]
+		icon:icons[4,5]
+		on earn:
+		if (have Grem and fairy3xp>=3753)
+		lose Grem
+		lose 1 fairies
+		lose 1 rock
+		fairy4level is fairy3level 
+		fairy4xp is (fairy3level*fairy3level*4.17) 
+		fairy4xpreq is (4.17*(fairy3level+1)*(fairy3level+1)) 
+		fairy4mana is fairy3mana
+		toast Grem evolved into Gremor!
+		else
+		lose this
+		lose 1 rock
+		lose 1 fairies
+		end
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy4mana<0.5)
+		lose 0.01 fairy4mana
+		yield fairy4level/4+15 fairy4mana
+		lose 1 mana	
+		toast Gremor's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy4level>10 and fairy4level<=59 and fairy4mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy4level<10 and fairy4mana>0.01)
+		toast Once Tadana reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy4level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy4level>=10 and fairy4level<=59 and fairy4xp>0 and fairy4xpreq-fairy4xp>1 and fairy4mana>0)
+		$goldcarboost=fairy4xpreq-fairy4xp-1
+		yield $goldcarboost fairy4xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy4mana is 0)
+		yield 0.001 fairy4mana
+		toast Gremor's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end	
+		end
+		on tick:
+		if (fairy4level<60 and fairy4mana>0.01)
+		//потеря маны в секунду
+		lose (0.04*(building3))/(1+0.072*fairy4level) fairy4mana
+		// скорость набора опыта
+		yield 0.05*(building3) fairy4xp
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy4xpreq=4.17*(fairy4level+1)*(fairy4level+1)
+		if (fairy4xp>=fairy4xpreq)
+		yield 0.5 fairy4level
+		yield 0.5 rocklevel
+		toast Gremor achieved [fairy4level+1] level!
+		end
+		end
+		on tick:
+		if (fairy4xp>10245 and no gremrockevolve)
+		show Gremrock
+		toast Gremor is ready to evolve to Gremrock. Click on the Gremrock to evolve. Once evolved, Gremrock will gain all the XP Gremor had and you shall lose your Gremor.
+		yield gremrockevolve
+		end
+		end
+		hidden
+		req:gremorevolve or Gremrock
+
+	*Gremrock
+		text:[?(have this)|Gremrock — lvl [fairy5level]|Click to evolve from Gremor!] [?(have this and fairy5level<60)|, mana [fairy5mana]| ]
+		cost:Gremor
+		tag:fairy5
+		tag:grouprock
+		desc:</> Not only is a Gremrock a creature of dangerous appearance: unlike his evolutionary ancestors, the Grem and the Gremor, it also knows how to use its strength and power efficiently in combat.[?(have this)|</><b>Yield: [floor(fairy5yield:ps)].[(fairy5yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy5yield] ([fairy5yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy5health]/[fairy5level*5]</b>|][?(have this)|</><b>Level: [fairy5level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy5mana)].[(fairy5mana*pow(10,2))%pow(10,2)]/[floor(fairy5level/4)+15]</b>|][?(have this)|</><b>XP: [fairy5xp] — [floor(fairy5xp:ps)].[(fairy5xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy5xpreq-fairy5xp]</b>|]
+		icon:icons[5,5]
+		on earn:
+		lose Gremor
+		lose 1 fairies
+		lose 1 rock
+		fairy5level is fairy4level 
+		fairy5xp is (fairy4level*fairy4level*4.17) 
+		fairy5xpreq is (4.17*(fairy4level+1)*(fairy4level+1)) 
+		fairy5mana is fairy4mana
+		toast Gremor evolved into Gremrock!
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy5mana<0.5)
+		lose 0.01 fairy5mana
+		yield fairy5level/4+15 fairy5mana
+		lose 1 mana	
+		toast Gremrock's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy5level>10 and fairy5level<=59 and fairy5mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy5level<10 and fairy5mana>0.01)
+		toast Once Tadana reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy5level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy5level>=10 and fairy5level<=59 and fairy5xp>0 and fairy5xpreq-fairy5xp>1 and fairy5mana>0)
+		$goldcarboost=fairy5xpreq-fairy5xp-1
+		yield $goldcarboost fairy5xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy5mana is 0)
+		yield 0.001 fairy5mana
+		toast Gremrock's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end		
+		end	
+		on tick:
+		if (fairy5level<60 and fairy5mana>0.01)
+		// скорость набора опыта
+		yield 0.04*(building3) fairy5xp
+		//потеря маны в секунду
+		lose (0.032*(building3))/(1+0.072*fairy5level) fairy5mana
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy5xpreq=4.17*(fairy5level+1)*(fairy5level+1)
+		if (fairy5xp>=fairy5xpreq)
+		yield 0.5 fairy5level
+		yield 0.5 rocklevel
+		toast Gremrock achieved [fairy5level+1] level!
+		end
+		end
+		req:gremrockevolve
+
+
+	*Vesbat
+		name:Vesbat
+		tag:fairy20
+		tag:grouprock
+		desc:Stones and rock build the entrances to the world of Zanzarah. Gritting its teeth and using its excellent sense of smell, the Vesbat approaches its opponent. It requires training in both stamina and strength.<//>
+		cost:5 gold
+icon:icons[8,6]
+		req:5000000000 gold:ps
+
+	*Stobat
+		name:Stobat
+		tag:fairy21
+		tag:grouprock
+		desc:This grey stony creature is an opponent othe fairies should not underestimate. This being may be small, but it is also cunning and skilled at dealing with its enemies..<//>
+		cost:5 gold
+icon:icons[9,6]
+		req:Vesbat
+
+	*Garbat
+		name:Garbat
+		tag:fairy22
+		tag:grouprock
+		desc:A well-trained Garbat is an effective opponent for all kinds of dark beings and forces of chaos. It is willing and receptive to anything new, and it gains experience in battle.<//>
+		cost:5 gold
+icon:icons[10,6]
+		req:Stobat
+
+		*TEMPLATE
+*groupwater
+class:waterfon
+tag:groupwater
+text:Water Fairies [water]/7
+icon:elements[3,0]
+no tooltip
+on click:
+hide Tadana
+hide Aquana
+hide Oceana
+hide Goop
+show groupwater1
+hide this
+end
+
+*groupwater1
+class:waterfon
+tag:groupwater
+text: Water Fairies 
+icon:elements[3,0]
+no tooltip
+on click:
+show Tadana
+show Aquana
+show Oceana
+show Goop
+show groupwater
+hide this
+end
+hidden
+
+		*TEMPLATE
+		on earn:yield 1 fairies
+		on earn:yield 1 water
+		on earn:yield 1 groupwater
+		on earn:yield 1 groupwater1
+		class:fairyfon
+
+	*Goop
+		text:[?(have this)|Goop — lvl [fairy64level]|You don't have this fairy yet!][?(have this and fairy64level<60)|, mana [fairy64mana]|]
+		req:5 building2
+		tag:fairy64
+		tag:groupwater
+		desc:</>The world has hardly ever seen beings as cheerful as the Goops. They're always smiling, wagging their tails, and jumping all the time - as if life was just a game and a fight just a match.[?(have this)|</><b>Yield: [floor(fairy64yield:ps)].[(fairy64yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy64yield] ([fairy64yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy64health]/[fairy64level*5]</b>|][?(have this)|</><b>Level: [fairy64level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy64mana)].[(fairy64mana*pow(10,2))%pow(10,2)]/[floor(fairy64level/4)+15]</b>|][?(have this)|</><b>XP: [fairy64xp] — [floor(fairy64xp:ps)].[(fairy64xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy64xpreq-fairy64xp]</b>|]
+		cost:80 gold and 1 silversphere
+		icon:icons[4,10]
+		// обнуление феи при покупке
+		on earn:
+		if (chance(1%))
+		lose 1 this
+		lose 1 fairies
+		lose 1 water
+		yield 1 silversphere
+		toast This fairy escaped!
+		else
+		fairy64level is ceil(fairy64level*0.15)
+		fairy64xp is fairy64level*fairy64level*4.17
+		fairy64mana is floor(fairy64level/4)*15
+		yield floor(fairy64level/4+15) fairy64mana
+		yield fairy64level waterlevel
+		toast You catched the fairy!
+		end
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy64mana<0.5)
+		lose 0.01 fairy64mana
+		yield floor(fairy64level/4+15) fairy64mana
+		lose 1 mana	
+		toast Goop's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy64level>10 and fairy64level<=59 and fairy64mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy64level<10 and fairy64mana>0.01)
+		toast Once Goop reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy64level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy64level>=10 and fairy64level<=59 and fairy64xp>0 and fairy64xpreq-fairy64xp>1 and fairy64mana>0)
+		$goldcarboost=fairy64xpreq-fairy64xp-1
+		yield $goldcarboost fairy64xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy64mana is 0)
+		yield 0.001 fairy64mana
+		toast Goop's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end		
+		end	
+		on tick:
+		if (fairy64level<60 and fairy64mana>0.01)
+		//потеря маны в секунду
+		lose (0.05*(building2+building22+building222))/(1+0.075*fairy64level) fairy64mana
+		// скорость набора опыта
+		yield 0.3*building2 fairy64xp
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy64xpreq=4.17*(fairy64level+1)*(fairy64level+1)
+		if (fairy64xp>=fairy64xpreq)
+		yield 0.5 fairy64level
+		yield 0.5 waterlevel
+		yield (((fairy64level+1/4)+15-3.9*((fairy64level+1)/4))-fairy64mana) fairy64mana
+		toast Goop achieved [fairy64level+1] level!
+		end
+		end
+
+	*Tadana
+		text: [?(have this)|Tadana — lvl [fairy6level]|You don't have this fairy yet!][?(have this and fairy6level<60)|, mana [fairy6mana]|]
+		tag:fairy6
+		tag:groupwater
+		desc:</>In the wide spaces of the oceans and seas, but also in the lakes and rivers in Zanzarah, Water Fairies can be found. 		Tadana is a very young water being, who is often underestimated by her opponents. She evolves into Aquana at level 31.[?(have this)|</><b>Yield: [floor(fairy6yield:ps)].[(fairy6yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy6yield] ([fairy6yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy6health]/[fairy6level*5]</b>|][?(have this)|</><b>Level: [fairy6level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy6mana)].[(fairy6mana*pow(10,2))%pow(10,2)]/[floor(fairy6level/4)+15]</b>|][?(have this)|</><b>XP: [fairy6xp] — [floor(fairy6xp:ps)].[(fairy6xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy6xpreq-fairy6xp]</b>|]
+		cost:50 gold and 1 silversphere
+		icon:icons[6,5]
+		// обнуление феи при покупке
+		on earn:
+		if (chance(1%))
+		lose 1 this
+		lose 1 fairies
+		lose 1 water
+		yield 1 silversphere
+		toast This fairy escaped!
+		else
+		fairy6level is ceil(fairy6level*0.15)
+		fairy6xp is fairy6level*fairy6level*4.17
+		fairy6mana is floor(fairy6level/4)*15
+		yield floor(fairy6level/4+15) fairy6mana
+		yield fairy6level waterlevel
+		toast You catched the fairy!
+		end
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy6mana<0.5)
+		lose 0.01 fairy6mana
+		yield floor(fairy6level/4+15) fairy6mana
+		lose 1 mana	
+		toast Tadana's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy6level>10 and fairy6level<=59 and fairy6mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy6level<10 and fairy6mana>0.01)
+		toast Once Tadana reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy6level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy6level>=10 and fairy6level<=59 and fairy6xp>0 and fairy6xpreq-fairy6xp>1 and fairy6mana>0)
+		$goldcarboost=fairy6xpreq-fairy6xp-1
+		yield $goldcarboost fairy6xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy6mana is 0)
+		yield 0.001 fairy6mana
+		toast Tadana's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end		
+		end	
+		on tick:
+		if (fairy6level<60 and fairy6mana>0.01)
+		//потеря маны в секунду
+		lose (0.042*(building2+building22+building222))/(1+0.078*fairy6level) fairy6mana
+		// скорость набора опыта
+		yield 0.36*(building2+building22+building222) fairy6xp
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy6xpreq=4.17*(fairy6level+1)*(fairy6level+1)
+		if (fairy6xp>=fairy6xpreq)
+		yield 0.5 fairy6level
+		yield 0.5 waterlevel
+		toast Tadana achieved [fairy6level+1] level!
+		end
+		end
+		on tick:
+		if (fairy6xp>4270 and no aquanaevolve)
+		show Aquana
+		toast Tadana is ready to evolve to Aquana. Click on the Aquana to evolve. Once evolved, Aquana will gain all the XP Tadana had and you shall lose your Tadana.
+		yield aquanaevolve
+		end
+		end
+
+	*Aquana
+		text: [?(have this)|Aquana — lvl [fairy7level]|Click to evolve from Tadana!] [?(have this and fairy7level<60)|, mana [fairy7mana]| ]
+		tag:fairy7
+		tag:groupwater
+		desc:</>Aquana only feels really comfortable in her own element: water. To catch water beings, you need a conch with which you can lure the fairy to the surface by making circling movements. She evolves into Oceana at level 49.[?(have this)|</><b>Yield: [floor(fairy7yield:ps)].[(fairy7yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy7yield] ([fairy7yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy7health]/[fairy7level*5]</b>|][?(have this)|</><b>Level: [fairy7level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy7mana)].[(fairy7mana*pow(10,2))%pow(10,2)]/[floor(fairy7level/4)+15]</b>|][?(have this)|</><b>XP: [fairy7xp] — [floor(fairy7xp:ps)].[(fairy7xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy7xpreq-fairy7xp]</b>|]
+		icon:icons[7,5]
+		on earn:
+		if (have Tadana and fairy6xp>=4270)
+		lose Tadana
+		lose 1 fairies
+		lose 1 water
+		fairy7level is fairy6level 
+		fairy7xp is (fairy6level*fairy6level*4.17) 
+		fairy7xpreq is (4.17*(fairy6level+1)*(fairy6level+1)) 
+		fairy7mana is fairy6mana
+		toast Tadana evolved into Aquana!
+		else
+		lose this
+		lose 1 water
+		lose 1 fairies
+		end
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy7mana<0.5)
+		lose 0.01 fairy7mana
+		yield fairy7level/4+15 fairy7mana
+		lose 1 mana	
+		toast Aquana's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy7level>10 and fairy7level<=59 and fairy7mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy7level<10 and fairy7mana>0.01)
+		toast Once Tadana reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy7level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy7level>=10 and fairy7level<=59 and fairy7xp>0 and fairy7xpreq-fairy7xp>1 and fairy7mana>0)
+		$goldcarboost=fairy7xpreq-fairy7xp-1
+		yield $goldcarboost fairy7xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy7mana is 0)
+		yield 0.001 fairy7mana
+		toast Aquana's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end		
+		end	
+		on tick:
+		if (fairy7level<60 and fairy7mana>0.01)
+		//потеря маны в секунду
+		lose (0.035*(building2+building22+building222))/(1+0.078*fairy7level) fairy7mana
+		// скорость набора опыта
+		yield 0.3*(building2+building22+ building222) fairy7xp
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy7xpreq=4.17*(fairy7level+1)*(fairy7level+1)
+		if (fairy7xp>=fairy7xpreq)
+		yield 0.5 fairy7level
+		yield 0.5 waterlevel
+		toast Aquana achieved [fairy7level+1] level!
+		end
+		end
+		on tick:
+		if (fairy7xp>10245 and no oceanaevolve)
+		show Oceana
+		toast Aquana is ready to evolve to Oceana. Click on the Oceana to evolve. Once evolved, Oceana will gain all the XP Aquana had and you shall lose your Aquana.
+		yield oceanaevolve
+		end
+		end
+		hidden
+		req:aquanaevolve or Oceana
+
+	*Oceana
+		text: [?(have this)|Oceana — lvl [fairy8level]|Click to evolve from Aquana!] [?(have this and fairy8level<60)|, mana [fairy8mana]| ]
+		cost:Aquana
+		tag:fairy8
+		tag:groupwater
+		desc:</>This creature is found where bubbles of air meet the waves. It can use its skills from the underwater world brilliantly even outside that realm. Oceana considers herself the strongest untrained water fairy alive.[?(have this)|</><b>Yield: [floor(fairy8yield:ps)].[(fairy8yield:ps*pow(10,2))%pow(10,2)] gold/s, total: [fairy8yield] ([fairy8yield/gold*100]% of bank)</b>|][?(have this)|<b></>Health: [fairy8health]/[fairy8level*5]</b>|][?(have this)|</><b>Level: [fairy8level]/60</b>|][?(have this)|</><b>Mana: [floor(fairy8mana)].[(fairy8mana*pow(10,2))%pow(10,2)]/[floor(fairy8level/4)+15]</b>|][?(have this)|</><b>XP: [fairy8xp] — [floor(fairy8xp:ps)].[(fairy8xp:ps*pow(10,2))%pow(10,2)] XP/s, till next level: [fairy8xpreq-fairy8xp]</b>|]
+		icon:icons[8,5]
+		on earn:
+		lose Aquana
+		lose 1 fairies
+		lose 1 water
+		fairy8level is fairy7level 
+		fairy8xp is (fairy7level*fairy7level*4.17) 
+		fairy8xpreq is (4.17*(fairy7level+1)*(fairy7level+1)) 
+		fairy8mana is fairy7mana
+		toast Aquana evolved into Oceana!
+		end
+		on tick:
+		// начисление маны
+		if (have this and mana>=1 and fairy8mana<0.5)
+		lose 0.01 fairy8mana
+		yield fairy8level/4+15 fairy8mana
+		lose 1 mana	
+		toast Oceana's mana refilled. This fairy continues to work.	
+		end
+		end
+		on click:
+		// начисление золотой моркови
+		if (have this and no goldencarrot and fairy8level>10 and fairy8level<=59 and fairy8mana>0.01)
+		toast You don't have any golden carrots to spend.
+		else if (have this and goldencarrot>=1 and fairy8level<10 and fairy8mana>0.01)
+		toast Once Tadana reaches 10 level you'd be able to feed this fairy with golden carrots.
+		else if (have this and goldencarrot>=1 and fairy8level is 60)
+		toast This fairy is already at 60 level.
+		else if (have this and goldencarrot>=1 and fairy8level>=10 and fairy8level<=59 and fairy8xp>0 and fairy8xpreq-fairy8xp>1 and fairy8mana>0)
+		$goldcarboost=fairy8xpreq-fairy8xp-1
+		yield $goldcarboost fairy8xp
+		lose 1 goldencarrot
+		toast Golden Carrot was successfully spent.
+		end
+		end
+		on tick:
+		if (have this and mana is 0 and fairy8mana is 0)
+		yield 0.001 fairy8mana
+		toast Oceana's ran out of mana. Buy some mana, so this fairy could continue to work.
+		end		
+		end	
+		on tick:
+		if (fairy8level<60 and fairy8mana>0.01)
+		//потеря маны в секунду
+		lose (0.025*(building2+building22+building222))/(1+0.078*fairy8level) fairy8mana
+		// скорость набора опыта
+		yield 0.25*(building2+building22+ building222) fairy8xp
+		end
+		end
+		on tick:
+		// заработок опыта
+		fairy8xpreq=4.17*(fairy8level+1)*(fairy8level+1)
+		if (fairy8xp>=fairy8xpreq)
+		yield 0.5 fairy8level
+		yield 0.5 waterlevel
+		toast Oceana achieved [fairy8level+1] level!
+		end
+		end
+		req:oceanaevolve
+
+
+		*TEMPLATE
+req:10000000000 gold
+
+*groupair
+class:airfon
+tag:groupair
+text: Air Fairies [air]/7
+icon:elements[1,0]
+no tooltip
+
+		*TEMPLATE
+*grouplight
+class:lightfon
+tag:grouplight
+text: Light Fairies [light]/3
+icon:elements[0,1]
+no tooltip
+
+		*TEMPLATE
+*groupenergy
+class:energyfon
+tag:groupenergy
+text: Energy Fairies [energy]/6
+icon:elements[1,1]
+no tooltip
+
+		*TEMPLATE
+*grouppsi
+class:psifon
+tag:grouppsi
+text: Psi Fairies [energy]/6
+icon:elements[2,1]
+no tooltip
+
+		*TEMPLATE
+*groupice
+class:icefon
+tag:groupice
+text: Ice Fairies [energy]/4
+icon:elements[3,1]
+no tooltip
+
+		*TEMPLATE
+*groupchaos
+class:chaosfon
+tag:groupchaos
+text: Chaos Fairies [energy]/8
+icon:elements[0,2]
+no tooltip
+
+		*TEMPLATE
+*groupfire
+class:firefon
+tag:groupfire
+text: Fire Fairies [fire]/7
+icon:elements[1,2]
+no tooltip
+
+		*TEMPLATE
+*groupmetal
+class:metalfon
+tag:groupmetal
+text: Metal Fairies [metal]/3
+icon:elements[3,2]
+no tooltip
+
+		*TEMPLATE
+*groupdark
+class:darkfon
+tag:groupdark
+text: Dark Fairies [energy]/3
+icon:elements[2,2]
+no tooltip
+
+*TEMPLATE
+
+//фоны локаций
+*Background1
+no text
+tag:backgroundthing
+class:endevabg1
+
+*Background1night
+no text
+tag:backgroundthing
+class:endevabg2
+hidden
+
+*Background2
+no text
+tag:backgroundthing2
+class:cottagebg1
+hidden 
+
+*Background2night
+no text
+tag:backgroundthing2
+class:cottagebg2
+hidden
+
+// artifacts
+		*TEMPLATE
+		tag:art
+
+	*clover
+		name:Magic clover
+		desc:</>Вы находите больше золота!<q>  
+		icon:icons[2,12]
+		cost:2500 gold
+		hidden
+
+	*pixiesumka
+		name:Pixies purse
+		desc:</>Магическая сумка, которая даёт шанс ловить вам двух пикси одновременно!<q>  <//><q>Я иду искать... мухаха!</q>
+		icon:icons[6,3]
+		cost:2500 gold
+		req:500 gold per second
+
+
+Achievements
+  *TEMPLATE
+		on earn:yield 1 achiev
+
+	*achiev1
+		name:Capture the wrong pixie
+		desc:Click this little pixie on screen
+		icon:pixie[0,0]
+		req:1 pixiejoke:clicks
+
+	*achiev2
+		name:Beginner
+		desc:Buy your first building.
+		icon:pixie[0,0]
+		req:building1 or building2 or building3
+
+	*achiev3
+		name:Starter pack
+		desc:Have Sillia, Tadana and Grem in your collection.
+		icon:pixie[0,0]
+		req:Sillia and Tadana and Grem
+
+	*achiev4
+		name:Expanding
+		desc:Have 5 fairies
+		icon:pixie[0,0]
+		req:fairies is 5
+
+	*achiev5
+		name:Villager
+		desc:Buy all starter buildings in Endeva
+		icon:pixie[0,0]
+		req:building1 and building2 and building3
+
+	*achiev6
+		name:Miner
+		desc:Have 10 mines.
+		icon:pixie[0,0]
+		req:10 building3 
+
+	*achiev7
+		name:Need to go deep
+		desc:Have 50 mines.
+		icon:pixie[0,0]
+		req:50 building3 
+
+	*achiev8
+		name:Water is everything
+		desc:Have 10 Watermills.
+		icon:pixie[0,0]
+		req:10 building2 
+
+	*achiev9
+		name:Forest is everything
+		desc:Have 10 Sawmills.
+		icon:pixie[0,0]
+		req:10 building1
+
+	*achiev10
+		name:That's what I call "power"
+		desc:Reach 60 lvl on one fairy.
+		icon:pixie[0,0]
+		req:1 maxlevel
+
+	*achiev11
+		name:Holy trinity
+		desc:Have 3 fairies from 1 branch of evolution.
+		icon:pixie[0,0]
+		req:Sillia and Viteria and Boneria or Tadana and Aquana and Oceana
+
+	*achiev12
+		name:I love wood
+		desc:Have 50 Sawmills.
+		icon:pixie[0,0]
+		req:building1+building11 is 50
+
+	*achiev13
+		name:I love water
+		desc:Have 50 Watermills.
+		icon:pixie[0,0]
+		req:building2+building22 is 50
+
+	*achiev14
+		name:M-m-mana!
+		desc:Buy your first mana.
+		icon:pixie[0,0]
+		req:1 manacount 
+
+	*achiev15
+		name:Opium for fairies
+		desc:Buy 10 mana.
+		icon:pixie[0,0]
+		req:10 manacount 
+
+	*achiev16
+		name:You're into this game, aren't you?
+		desc:Buy 100 mana.
+		icon:pixie[0,0]
+		req:100 manacount
+
+	*achiev17
+		name:Try playing Minecraft instead of this game
+		desc:Have 50 mines.
+		icon:pixie[0,0]
+		req:50 building3
+
+	*achiev18
+		name:My precious
+		desc:Mine your first crystal.
+		icon:pixie[0,0]
+		req:1 crystal
+
+	*achiev19
+		name:Nature is true power
+		desc:Have Sillia, Viteria and Boneria.
+		icon:pixie[0,0]
+		req:Sillia and Viteria and Boneria
+
+	*achiev20
+		name:You never forget to wash your hands
+		desc:Have Tadana, Aquana and Oceana.
+		icon:pixie[0,0]
+		req:Tadana and Aquana and Oceana
+
+	*achiev21
+		name:\m/
+		desc:Have Grem, Gremor and Gremrock.
+		icon:pixie[0,0]
+		req:Grem and Aquana and Oceana
+
+	*achiev22
+		name:Ten is something 
+		desc:Have 10 fairies
+		icon:pixie[0,0]
+		req:10 fairies
+
+	*achiev23
+		name:Hunt has begun
+		desc:Capture your first pixie.
+		icon:pixie[0,0]
+		req:1 pixies
+
+	*achiev24
+		name:Hunter
+		desc:Capture 5 pixies.
+		icon:pixie[0,0]
+		req:5 pixies
+
+	*achiev25
+		name:Hunter II
+		desc:Capture 10 pixies.
+		icon:pixie[0,0]
+		req:10 pixies
+
+	*achiev26
+		name:Hunter III
+		desc:Capture 15 pixies.
+		icon:pixie[0,0]
+		req:15 pixies
+
+	*achiev27
+		name:Hunter IV
+		desc:Capture 20 pixies.
+		icon:pixie[0,0]
+		req:20 pixies
+
+	*achiev28
+		name:Hunter V
+		desc:Capture 25 pixies.
+		icon:pixie[0,0]
+		req:25 pixies
+
+	*achiev29
+		name:Hunter VI
+		desc:Capture 30 pixies.
+		icon:pixie[0,0]
+		req:30 pixies
+
+	*achiev30
+		name:Look at this baby
+		desc:Have 10 fairies of 60 lvl.
+		icon:pixie[0,0]
+		req:10 maxlevel
+
+	*achiev31
+		name:Fiver
+		desc:Have 5 fairies of 60 lvl.
+		icon:pixie[0,0]
+		req:5 maxlevel
+
+	*achiev32
+		name:Not bad
+		desc:Total level is equal 50.
+		icon:pixie[0,0]
+		req:50 sumlevel
+
+	*achiev33
+		name:You're growing
+		desc:Total level is equal 100.
+		icon:pixie[0,0]
+		req:100 sumlevel
+
+	*achiev34
+		name:Biest
+		desc:Total level is equal 300.
+		icon:pixie[0,0]
+		req:300 sumlevel
+
+	*achiev35
+		name:Fairy monster
+		desc:Total level is equal 500.
+		icon:pixie[0,0]
+		req:500 sumlevel
